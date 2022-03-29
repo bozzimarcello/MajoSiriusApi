@@ -6,10 +6,10 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
-COPY ["MajoSiriusApi/MajoSiriusApi.csproj", "MajoSiriusApi/"]
-RUN dotnet restore "MajoSiriusApi/MajoSiriusApi.csproj"
+COPY ["MajoSiriusApi.csproj", "./"]
+RUN dotnet restore "MajoSiriusApi.csproj"
 COPY . .
-WORKDIR "/src/MajoSiriusApi"
+WORKDIR "/src/."
 RUN dotnet build "MajoSiriusApi.csproj" -c Release -o /app/build
 
 FROM build AS publish
